@@ -1,0 +1,49 @@
+@import url(reset.css);
+
+*,:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+
+img {max-width:100%;}
+
+body {font-size:16px;font-family:'Arial';color:#4781bc;}
+
+a {text-decoration:none;}
+
+#wrapper {background: url(../img/fndPotencia2.jpg) no-repeat 0 0;background-size:300px;width:300px;height:300px;position:relative;margin:0 auto;}
+#circle {
+	position:absolute;
+	width:210px;
+	height:210px;
+	border:2px solid hsl(200, 70%, 30%);
+	border-radius:50%;
+	text-align:center;
+	left:45px;
+	top:45px;
+}
+#circle p{
+	font-size: 22px;
+	color: #FFFFFF;
+	background-color: #3682be;
+	-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+	height:100px;
+	width:100px;
+	margin:15px auto;
+	font-family:'SansationR';
+	padding:10px;
+}
+#circle p strong {font-family:'SansationB';font-size:2em;display:block;}
+#handler {
+	position:relative;
+	font-size:10px;
+	line-height:40px;
+	height:40px;
+	width:40px;
+	left:139px;
+	top:-3px;
+	background-color:#66b1eb; 
+	-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;
+	cursor:pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	user-select:none;
+}
+#handler span {position:absolute;-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;left:10px;top:10px;background-color:#3682be;width:20px;height:20px;}

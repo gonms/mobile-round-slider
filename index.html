@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>Slider circular móvil</title>
+	<link rel="stylesheet" href="css/estilos.css" type="text/css" />
+</head>
+<body>
+
+	<div class="content">
+		<h2>¿Qué potencia tiene tu coche?</h2>
+		<div id="wrapper">
+			<div id='circle'>
+				<div id='handler'><span></span></div>
+				<p id="test"><strong>85</strong>CV</p>
+			</div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	<script>
+	function ayuda(){
+		$('.ayuda').slideToggle();
+	}
+	$(function () {
+		var $circle = $('#circle'),
+		    $handler = $('#handler'),
+			$p = $('#test'),
+		    handlerW2 = $handler.width()/2,
+		    rad = $circle.width()/2,
+		    offs = $circle.offset(),
+		    elPos = {x:offs.left, y:offs.top},
+		    mHold = 0,
+			PI2 = Math.PI/180,
+			X, Y;
+		$circle.on("touchstart",function(e) {e.preventDefault(); mHold = 1; });
+		$(document).on("touchmove", function(e) {
+			if (mHold) {
+				
+				e.preventDefault();
+	    		var touch = e.originalEvent.touches[0];
+				var mPos = {x:touch.pageX-elPos.x, y:touch.pageY-elPos.y},
+				    atan = Math.atan2(mPos.x-rad, mPos.y-rad),
+				    deg  = -atan/PI2+180,
+					perc = (deg*6/360);
+				    X = Math.round(rad*  Math.sin(deg*PI2)),    
+				    Y = Math.round(rad* -Math.cos(deg*PI2));
+				$handler.css({left:X+rad-handlerW2, top:Y+rad-handlerW2});
+				var bg,fs,w,m,t,p;
+				perc = parseInt(perc);
+				if (perc == 0)
+				{
+					t = '<strong>85</strong>CV';
+					bg = '#3682be';
+					fs = '22px';
+					w =  '100px';
+					m = '15px auto';
+					p = '10px';
+				}
+				else if (perc == 1)
+				{
+					t = '<strong>105</strong>CV';
+					bg = '#3985c0';
+					fs = '26px';
+					w =  '118px';
+					m = '3px auto';
+					p = '15px';
+				}
+				else if (perc == 2)
+				{
+					t = '<strong>136</strong>CV';
+					bg = '#4f9ad5';
+					fs = '30px';
+					w =  '136px';
+					m = '-5px auto';
+					p = '20px';
+				}
+				else if (perc == 3)
+				{
+					t = '<strong>150</strong>CV';
+					bg = '#5da8e3';
+					fs = '34px';
+					w =  '154px';
+					m = '-13px auto';
+					p = '20px';
+				}
+				else if (perc == 4)
+				{
+					t = '<strong>225</strong>CV';
+					bg = '#66b1eb';
+					fs = '38px';
+					w =  '172px';
+					m = '-21px auto';
+					p = '25px';
+				}
+				else if (perc == 5)
+				{
+					t = '<strong>300</strong>CV';
+					bg = '#66b1eb';
+					fs = '40px';
+					w =  '190px';
+					m = '-31px auto'
+					p = '25px';
+				}
+
+				$p.html(t).css({backgroundColor:bg, height:w, width:w, margin:m, fontSize:fs, paddingTop:p});
+			}
+		}).on("touchend", function() { mHold = 0; });
+	});
+	</script>
+</body>
+</html>
